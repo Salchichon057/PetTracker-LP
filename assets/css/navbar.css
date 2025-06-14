@@ -27,6 +27,12 @@ nav {
     display: none !important;
 }
 
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .nav-links,
 .nav-actions {
     display: flex;
@@ -134,11 +140,21 @@ nav a.btn:hover {
     transform: translateY(-10px) rotate(-45deg);
 }
 
-
-.nav-toggle {
+.nav-separator {
     display: none;
+    border: none;
+    border-top: 1.5px solid var(--background-color);
+    width: 80%;
+    margin: 1rem auto;
 }
 
+@media (max-width: 850px) {
+    .nav-separator {
+        display: block;
+    }
+}
+
+/* Responsive */
 @media (max-width: 850px) {
     nav {
         flex-wrap: wrap;
@@ -146,13 +162,12 @@ nav a.btn:hover {
         position: relative;
     }
 
-    .nav-links,
-    .nav-actions {
+    .nav-menu {
         flex-direction: column;
         align-items: center;
-        /* Centra los elementos */
         background: var(--white-color);
         position: absolute;
+        top: 70px;
         left: 0;
         width: 100%;
         box-shadow: 0 8px 24px rgba(2, 39, 58, 0.08);
@@ -161,30 +176,23 @@ nav a.btn:hover {
         pointer-events: none;
         opacity: 0;
         transform: translateY(-200%);
+        padding: 1.2rem 2rem 1.2rem 2rem;
+        gap: 0.8rem;
     }
 
-    .nav-links {
-        top: 70px;
-        padding: 1.2rem 2rem 0.5rem 2rem;
-        margin-bottom: 0;
+    .nav-menu.open {
+        pointer-events: auto;
+        opacity: 1;
+        transform: translateY(0);
     }
 
+    .nav-links,
     .nav-actions {
-        top: calc(70px + 100%);
-        /* Coloca debajo de nav-links */
-        padding: 0.5rem 2rem 1.2rem 2rem;
-    }
-
-    .nav-links.open {
-        pointer-events: auto;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .nav-actions.open {
-        pointer-events: auto;
-        opacity: 1;
-        transform: translateY(0);
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0;
+        margin: 0;
     }
 
     .nav-toggle {
