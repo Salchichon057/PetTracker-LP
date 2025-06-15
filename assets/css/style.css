@@ -2,8 +2,19 @@
 @import url(hero.css);
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
 
-* {
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
     margin: 0;
     padding: 0;
     border: 0;
@@ -67,7 +78,6 @@ button {
     hyphens: auto;
     background-color: transparent;
     display: block;
-
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
