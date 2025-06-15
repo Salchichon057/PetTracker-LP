@@ -1,11 +1,10 @@
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelector('.nav-links');
-const navActions = document.querySelector('.nav-actions');
 const navItems = document.querySelectorAll('.nav-links a');
 const sections = document.querySelectorAll('main section[id]');
+const header = document.querySelector('header');
 
-const NAVBAR_HEIGHT = 80;
+const NAVBAR_HEIGHT = header.offsetHeight || 80;
 
 navToggle.addEventListener('click', () => {
 	navMenu.classList.toggle('open');
@@ -20,10 +19,7 @@ function activateNavLink() {
 		const sectionTop = current.offsetTop - NAVBAR_HEIGHT;
 		const sectionId = current.getAttribute('id');
 
-		if (
-			scrollY >= sectionTop &&
-			scrollY < sectionTop + sectionHeight
-		) {
+		if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
 			navItems.forEach(link => {
 				link.classList.remove('active');
 				if (link.getAttribute('href') === `#${sectionId}`) {
@@ -34,8 +30,22 @@ function activateNavLink() {
 	});
 }
 
-window.addEventListener('scroll', activateNavLink);
-window.addEventListener('DOMContentLoaded', activateNavLink);
+window.addEventListener('scroll', () => {
+	activateNavLink();
+
+	if (window.scrollY > 10) {
+		header.classList.add('sticky-scrolled');
+	} else {
+		header.classList.remove('sticky-scrolled');
+	}
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+	activateNavLink();
+	console.log('[DOMContentLoaded] header position:', getComputedStyle(header).position);
+});
+
+window.addEventListener('hashchange', activateNavLink);
 
 navItems.forEach(link => {
 	link.addEventListener('click', function (e) {
