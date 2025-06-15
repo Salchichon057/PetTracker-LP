@@ -13,10 +13,11 @@ navToggle.addEventListener('click', () => {
 
 function activateNavLink() {
 	let scrollY = window.pageYOffset;
+	const OFFSET = 20;
 
 	sections.forEach(current => {
 		const sectionHeight = current.offsetHeight;
-		const sectionTop = current.offsetTop - NAVBAR_HEIGHT;
+		const sectionTop = current.offsetTop - NAVBAR_HEIGHT - OFFSET;
 		const sectionId = current.getAttribute('id');
 
 		if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
